@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m210916_091940_create_airport_table extends Migration
+class m210914_091940_create_airport_table extends Migration
 {
 
     public function init()

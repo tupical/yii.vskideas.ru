@@ -49,7 +49,15 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'airports' => 'airport/index',
+                'airlines' => 'airline/index',
+                'aircrafts' => 'aircraft/index',
+                'planes' => 'plane/index',
+                'city/<id:\d+>' => 'city/view'
             ],
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
         ],
         
     ],
@@ -62,8 +70,20 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '91.215.201.1'],
+        'panels' => [
+            'db' => [
+                'class' => 'yii\debug\panels\DbPanel',
+                'defaultOrder' => [
+                    'seq' => SORT_ASC
+                ],
+                'defaultFilter' => [
+                    'type' => 'SELECT'
+                ]
+            ],
+        ],
     ];
+
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [

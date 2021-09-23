@@ -5,10 +5,10 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%country}}`.
  */
-class m210916_092804_create_country_table extends Migration
+class m210914_092804_create_country_table extends Migration
 {
     public function init()
-    {
+    { 
         $this->db = 'db';
         parent::init();
     }

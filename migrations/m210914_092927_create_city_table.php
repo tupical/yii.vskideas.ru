@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%city}}`.
  */
-class m210916_092927_create_city_table extends Migration
+class m210914_092927_create_city_table extends Migration
 {
     public function init()
     {
@@ -22,11 +22,11 @@ class m210916_092927_create_city_table extends Migration
             [
                 'id'=> $this->primaryKey(11),
                 'name'=> $this->string(255)->notNull(),
-                'country'=> $this->char(2)->notNull(),
+                'country_code'=> $this->char(2)->notNull(),
             ],$tableOptions
         );
-        $this->createIndex('name','{{%city}}',['name','country'],true);
-        $this->createIndex('city_ibfk_1','{{%city}}',['country'],false);
+        $this->createIndex('name','{{%city}}',['name','country_code'],true);
+        $this->createIndex('city_ibfk_1','{{%city}}',['country_code'],false);
 
     }
 

@@ -16,7 +16,7 @@ class m210916_092934_create_city_relations extends Migration
     public function safeUp()
     {
         $this->addForeignKey('fk_city_country',
-            '{{%city}}','country',
+            '{{%city}}','country_code',
             '{{%country}}','code',
             'CASCADE','CASCADE'
          );

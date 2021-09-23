@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m210916_092324_create_airline_table extends Migration
+class m210914_092324_create_airline_table extends Migration
 {
 
     public function init()
@@ -21,7 +21,7 @@ class m210916_092324_create_airline_table extends Migration
             [
                 'id'=> $this->primaryKey(11),
                 'name'=> $this->string(255)->notNull(),
-                'country'=> $this->integer(11)->notNull(),
+                'country_code'=> $this->char(2)->notNull(),
                 'full_name'=> $this->string(255)->notNull(),
             ],$tableOptions
         );

@@ -38,8 +38,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Airports', 'url' => ['/airport/index']],
+            ['label' => 'Airlines', 'url' => ['/airline/index']],
+            ['label' => 'Planes', 'url' => ['/plane/index']],
+            ['label' => 'Aircrafts', 'url' => ['/aircraft/index']],
+            ['label' => 'Cities', 'url' => ['/city/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

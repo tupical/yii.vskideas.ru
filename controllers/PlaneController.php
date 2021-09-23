@@ -2,20 +2,16 @@
 
 namespace app\controllers;
 
-use Yii;
-use app\models\Airport;
-use app\models\City;
+use app\models\Plane;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use yii\filters\AccessControl;
 
 /**
- * AirportController implements the CRUD actions for Airport model.
+ * PlaneController implements the CRUD actions for Plane model.
  */
-class AirportController extends Controller
+class PlaneController extends Controller
 {
     /**
      * @inheritDoc
@@ -25,19 +21,8 @@ class AirportController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'only' => ['create','update','delete'],
-                    'rules' => [
-                        [
-                            'actions' => ['create','update','delete'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ],
-                    ],
-                ],
                 'verbs' => [
-                    'class' => VerbFilter::class,
+                    'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -47,14 +32,14 @@ class AirportController extends Controller
     }
 
     /**
-     * Lists all Airport models.
+     * Lists all Plane models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Airport::find()->joinWith(City::tableName()),
-        
+            'query' => Plane::find(),
+            /*
             'pagination' => [
                 'pageSize' => 50
             ],
@@ -63,7 +48,7 @@ class AirportController extends Controller
                     'id' => SORT_DESC,
                 ]
             ],
-            
+            */
         ]);
 
         return $this->render('index', [
@@ -72,28 +57,26 @@ class AirportController extends Controller
     }
 
     /**
-     * Displays a single Airport model.
+     * Displays a single Plane model.
      * @param int $id ID
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $model,
-            'city' => City::findOne($model->city_id)
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Airport model.
+     * Creates a new Plane model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Airport();
+        $model = new Plane();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -104,12 +87,12 @@ class AirportController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model
+            'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing Airport model.
+     * Updates an existing Plane model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return mixed
@@ -123,17 +106,13 @@ class AirportController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-
         return $this->render('update', [
-            'model' => $model
+            'model' => $model,
         ]);
-
-
-       
     }
 
     /**
-     * Deletes an existing Airport model.
+     * Deletes an existing Plane model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return mixed
@@ -147,18 +126,18 @@ class AirportController extends Controller
     }
 
     /**
-     * Finds the Airport model based on its primary key value.
+     * Finds the Plane model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Airport the loaded model
+     * @return Plane the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Airport::findOne($id)) !== null) {
+        if (($model = Plane::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

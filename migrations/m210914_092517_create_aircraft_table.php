@@ -6,7 +6,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%aircraft}}`.
  */
-class m210916_092517_create_aircraft_table extends Migration
+class m210914_092517_create_aircraft_table extends Migration
 {
 
     public function init()
